@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pothole Detector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">⬡</span>
+    <span>PotholeAI</span>
+  </div>
+  <div class="badge">YOLOv8 Powered</div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <p class="eyebrow">Road Safety Intelligence</p>
+    <h1>Detect Potholes<br><span class="accent">Instantly</span></h1>
+    <p class="subtitle">Upload a road image and our AI model will locate every pothole with bounding boxes and confidence scores.</p>
+  </section>
+
+  <!-- Upload Card -->
+  <section class="card upload-card" id="uploadSection">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">📷</div>
+      <p class="drop-title">Drop your road image here</p>
+      <p class="drop-sub">or click to browse &nbsp;·&nbsp; JPG, PNG, WEBP</p>
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp" hidden/>
+    </div>
+
+    <!-- Preview -->
+    <div class="preview-box hidden" id="previewBox">
+      <img id="previewImg" src="" alt="Preview"/>
+      <button class="btn-clear" id="clearBtn">✕ Remove</button>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings">
+      <label>
+        Confidence threshold:
+        <span id="confVal">40%</span>
+      </label>
+      <input type="range" id="confSlider" min="10" max="90" value="40" step="5"/>
+    </div>
+
+    <button class="btn-detect" id="detectBtn" disabled>
+      <span id="btnText">Select an image first</span>
+      <span id="btnSpinner" class="spinner hidden"></span>
+    </button>
+  </section>
+
+  <!-- Results -->
+  <section class="card results-card hidden" id="resultsSection">
+    <div class="results-header">
+      <h2>Detection Results</h2>
+      <div class="count-badge" id="countBadge">0 potholes</div>
+    </div>
+
+    <div class="results-grid">
+      <div class="result-image-wrap">
+        <img id="resultImg" src="" alt="Result"/>
+      </div>
+      <div class="detections-list" id="detectionsList"></div>
+    </div>
+
+    <button class="btn-secondary" id="tryAgainBtn">↩ Analyse another image</button>
+  </section>
+
+  <!-- No detection -->
+  <section class="card no-detect hidden" id="noDetectSection">
+    <div class="no-icon">✅</div>
+    <h3>No potholes detected</h3>
+    <p>The road looks clear at your confidence threshold. Try lowering it or use a different image.</p>
+    <button class="btn-secondary" id="tryAgainBtn2">↩ Try another image</button>
+  </section>
+</main>
+
+<footer>
+  <p>Built with YOLOv8 · Flask · OpenCV &nbsp;|&nbsp; Pothole Detection Project</p>
+</footer>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
